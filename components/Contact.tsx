@@ -3,23 +3,23 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { Mail, MapPin, CheckCircle } from "lucide-react";
+import { Mail, MapPin, Phone, User, CheckCircle } from "lucide-react";
 
 interface FormData {
-  name: string;
+  fullName: string;
   phone: string;
   email: string;
-  serviceType: string;
+  securityType: string;
+  service: string;
   message: string;
 }
 
+const securityTypes = ["Domestic", "Commercial", "Retail", "Public"];
 const serviceOptions = [
-  "Residential",
-  "Commercial",
-  "Air Conditioning",
-  "Data & Comms",
-  "Testing & Compliance",
-  "Other",
+  "Electrical Services",
+  "Data and Cameras",
+  "Airconditioning",
+  "Testing & Certification",
 ];
 
 const fadeInUp = {
@@ -59,11 +59,11 @@ export default function Contact() {
           className="text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-            Get in Touch
+            Contact Us
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-text-muted">
-            Ready to get started? Send us your details and we&apos;ll be in
-            touch with a quote.
+            Simply call or fill in the form and we&apos;ll get back to you as
+            soon as we can.
           </p>
         </motion.div>
 
@@ -71,9 +71,32 @@ export default function Contact() {
           <motion.div {...fadeInUp}>
             <div className="space-y-6">
               <div className="flex items-start gap-4">
+                <User size={22} className="mt-1 shrink-0 text-accent" />
+                <div>
+                  <p className="text-sm font-semibold text-text-main">
+                    Contact
+                  </p>
+                  <p className="text-sm text-text-muted">Ryan Blair</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <Phone size={22} className="mt-1 shrink-0 text-accent" />
+                <div>
+                  <p className="text-sm font-semibold text-text-main">Phone</p>
+                  <a
+                    href="tel:0427015926"
+                    className="text-sm text-text-muted hover:text-accent transition-colors"
+                  >
+                    0427 015 926
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
                 <Mail size={22} className="mt-1 shrink-0 text-accent" />
                 <div>
-                  <p className="text-sm font-semibold text-text-main">Email</p>
+                  <p className="text-sm font-semibold text-text-main">
+                    Enquiries
+                  </p>
                   <a
                     href="mailto:info@blairelectrical.com.au"
                     className="text-sm text-text-muted hover:text-accent transition-colors"
@@ -86,7 +109,7 @@ export default function Contact() {
                 <Mail size={22} className="mt-1 shrink-0 text-accent" />
                 <div>
                   <p className="text-sm font-semibold text-text-main">
-                    Accounts Enquiries
+                    Accounts
                   </p>
                   <a
                     href="mailto:accounts@blairelectrical.com.au"
@@ -103,7 +126,7 @@ export default function Contact() {
                     Service Area
                   </p>
                   <p className="text-sm text-text-muted">
-                    Servicing Brisbane & Gold Coast
+                    Servicing the Greater Brisbane &amp; Gold Coast Region
                   </p>
                 </div>
               </div>
@@ -114,7 +137,7 @@ export default function Contact() {
                 <div className="text-center">
                   <MapPin size={32} className="mx-auto text-accent" />
                   <p className="mt-3 text-sm font-semibold text-primary">
-                    Brisbane & Gold Coast Service Area
+                    Brisbane &amp; Gold Coast Service Area
                   </p>
                   <p className="mt-1 text-xs text-text-muted">
                     Covering all suburbs across SEQ
@@ -132,7 +155,7 @@ export default function Contact() {
               <div className="mb-6 flex items-center gap-3 rounded-lg bg-green-50 border border-green-200 p-4">
                 <CheckCircle size={20} className="shrink-0 text-green-600" />
                 <p className="text-sm font-medium text-green-800">
-                  Thanks! We&apos;ll be in touch shortly.
+                  Thanks! We&apos;ll get back to you as soon as we can.
                 </p>
               </div>
             )}
@@ -144,12 +167,14 @@ export default function Contact() {
             >
               <div>
                 <input
-                  {...register("name", { required: "Name is required" })}
-                  placeholder="Your Name *"
+                  {...register("fullName", {
+                    required: "Full name is required",
+                  })}
+                  placeholder="Full Name *"
                   className={inputClasses}
                 />
-                {errors.name && (
-                  <p className={errorClasses}>{errors.name.message}</p>
+                {errors.fullName && (
+                  <p className={errorClasses}>{errors.fullName.message}</p>
                 )}
               </div>
 
@@ -188,14 +213,14 @@ export default function Contact() {
 
               <div>
                 <select
-                  {...register("serviceType")}
+                  {...register("securityType")}
                   className={inputClasses}
                   defaultValue=""
                 >
                   <option value="" disabled>
-                    Select Service Type
+                    Select Type
                   </option>
-                  {serviceOptions.map((opt) => (
+                  {securityTypes.map((opt) => (
                     <option key={opt} value={opt}>
                       {opt}
                     </option>
@@ -203,11 +228,33 @@ export default function Contact() {
                 </select>
               </div>
 
+              <fieldset>
+                <legend className="mb-2 text-sm font-medium text-text-muted">
+                  Service Required
+                </legend>
+                <div className="grid grid-cols-2 gap-3">
+                  {serviceOptions.map((opt) => (
+                    <label
+                      key={opt}
+                      className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-text-main cursor-pointer hover:border-accent/50 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5"
+                    >
+                      <input
+                        {...register("service")}
+                        type="radio"
+                        value={opt}
+                        className="accent-accent"
+                      />
+                      {opt}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
               <div>
                 <textarea
                   {...register("message")}
                   rows={5}
-                  placeholder="Message / Job Description"
+                  placeholder="Message"
                   className={inputClasses}
                 />
               </div>
@@ -216,7 +263,7 @@ export default function Contact() {
                 type="submit"
                 className="w-full rounded-lg bg-accent px-8 py-4 text-base font-semibold text-primary shadow-sm hover:bg-accent/90 transition-all hover:shadow-md"
               >
-                Send Enquiry
+                Send
               </button>
             </form>
           </motion.div>

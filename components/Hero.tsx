@@ -1,14 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { CheckCircle } from "lucide-react";
-
-const trustBadges = [
-  "Licensed & Insured",
-  "10+ Years Experience",
-  "Brisbane & Gold Coast",
-  "Master Electricians",
-];
+import { Shield } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -26,29 +19,42 @@ export default function Hero() {
       <div className="absolute inset-0 bg-primary/75" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-4 py-32 text-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-5 py-2"
+        >
+          <Shield size={18} className="text-accent" />
+          <span className="text-sm font-semibold text-accent">
+            Master Electrician Australia
+          </span>
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.7, delay: 0.1 }}
           className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
         >
-          Brisbane & Gold Coast&apos;s Trusted Master Electricians
+          When Electrical Safety
+          <br />
+          Is Paramount
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2 }}
+          transition={{ duration: 0.7, delay: 0.3 }}
           className="mx-auto mt-6 max-w-2xl text-lg text-white/80 sm:text-xl"
         >
-          Residential, commercial, and industrial electrical services — done
-          right, every time.
+          Data &amp; Electrical Services for Brisbane &amp; the Gold Coast
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4 }}
+          transition={{ duration: 0.7, delay: 0.5 }}
           className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
         >
           <a
@@ -68,17 +74,23 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-x-6 gap-y-3"
+          transition={{ duration: 0.7, delay: 0.7 }}
+          className="mx-auto mt-16 grid max-w-3xl grid-cols-2 gap-4 sm:grid-cols-3"
         >
-          {trustBadges.map((badge) => (
-            <span
-              key={badge}
-              className="flex items-center gap-2 text-sm text-white/70"
+          {[
+            "Friendly, reliable & efficient",
+            "Prompt service & competitive rates",
+            "No obligation quotes",
+            "Master Electrician",
+            "Complete electrical & lighting solutions",
+            "All types of data & electrical projects",
+          ].map((point) => (
+            <div
+              key={point}
+              className="rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-center"
             >
-              <CheckCircle size={16} className="text-accent" />
-              {badge}
-            </span>
+              <p className="text-xs font-medium text-white/70 sm:text-sm">{point}</p>
+            </div>
           ))}
         </motion.div>
       </div>

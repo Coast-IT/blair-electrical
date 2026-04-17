@@ -1,8 +1,8 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import About from "@/components/About";
 import Services from "@/components/Services";
-import GoogleReviews from "@/components/GoogleReviews";
+import About from "@/components/About";
+import Testimonial from "@/components/Testimonial";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -11,9 +11,9 @@ export default function HomePage() {
     <main>
       <Navbar />
       <Hero />
-      <About />
       <Services />
-      <GoogleReviews />
+      <About />
+      <Testimonial />
       <Contact />
       <Footer />
     </main>

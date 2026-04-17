@@ -2,9 +2,24 @@ import { Zap } from "lucide-react";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Contact", href: "#contact" },
+  { label: "About Us", href: "#about" },
+  { label: "Contact Us", href: "#contact" },
+];
+
+const socialLinks = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/Blairelectrical",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/blairelectrical/",
+  },
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/blair-data-electrical/",
+  },
 ];
 
 export default function Footer() {
@@ -16,12 +31,26 @@ export default function Footer() {
             <div className="flex items-center gap-2">
               <Zap size={22} className="text-accent" />
               <span className="text-lg font-bold text-white">
-                Blair Data & Electrical
+                Blair Data &amp; Electrical
               </span>
             </div>
             <p className="mt-3 text-sm text-white/60">
-              Quality electrical work. No excuses.
+              When electrical safety is paramount.
             </p>
+            <div className="mt-5 flex gap-4">
+              {socialLinks.map((link) => (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-white/50 hover:text-accent transition-colors"
+                  aria-label={link.label}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
           </div>
 
           <div>
@@ -48,26 +77,28 @@ export default function Footer() {
             </h4>
             <div className="mt-4 space-y-2">
               <a
+                href="tel:0427015926"
+                className="block text-sm text-white/60 hover:text-accent transition-colors"
+              >
+                0427 015 926
+              </a>
+              <a
                 href="mailto:info@blairelectrical.com.au"
                 className="block text-sm text-white/60 hover:text-accent transition-colors"
               >
                 info@blairelectrical.com.au
               </a>
-              <p className="text-sm text-white/60">
-                Servicing Brisbane & Gold Coast
-              </p>
             </div>
           </div>
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8">
           <div className="flex flex-col items-center gap-3 text-center">
-            <p className="text-xs text-white/40">
-              &copy; {new Date().getFullYear()} Blair Data & Electrical. All
-              rights reserved.
+            <p className="text-xs font-medium uppercase tracking-wider text-white/40">
+              Servicing the Greater Brisbane &amp; Gold Coast Region
             </p>
             <p className="text-xs text-white/40">
-              Licensed & Insured Master Electricians — Brisbane & Gold Coast
+              &copy; {new Date().getFullYear()} BDE. All rights reserved.
             </p>
           </div>
         </div>

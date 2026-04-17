@@ -6,10 +6,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
   { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact", href: "#contact" },
+  { label: "About Us", href: "#about" },
+  { label: "Contact Us", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -35,7 +34,7 @@ export default function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-20 items-center justify-between">
           <a href="#home" className="text-xl font-bold text-white tracking-tight">
-            Blair Data & Electrical
+            Blair Data &amp; Electrical
           </a>
 
           <div className="hidden md:flex items-center gap-8">

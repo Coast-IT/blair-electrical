@@ -2,14 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Award, Shield, Home, FileCheck } from "lucide-react";
-
-const stats = [
-  { icon: Award, label: "10+ Years Experience" },
-  { icon: Shield, label: "Master Electrician Certified" },
-  { icon: Home, label: "Residential & Commercial" },
-  { icon: FileCheck, label: "AS3000:2018 Compliant" },
-];
+import { Award, ShieldCheck } from "lucide-react";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 30 },
@@ -33,46 +26,55 @@ export default function About() {
                 className="h-[400px] w-full object-cover lg:h-[500px]"
               />
             </div>
-            <div className="absolute -bottom-6 -right-6 hidden rounded-xl bg-accent p-6 shadow-xl lg:block">
-              <p className="text-3xl font-bold text-primary">10+</p>
-              <p className="text-sm font-medium text-primary/80">
-                Years of Experience
-              </p>
-            </div>
           </motion.div>
 
           <motion.div {...fadeInUp} transition={{ duration: 0.6, delay: 0.2 }}>
             <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
-              About Blair Data & Electrical
+              About Blair Data &amp; Electrical
             </h2>
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-text-muted">
-              <p>
-                BDE has been delivering quality electrical services across
-                Brisbane and the Gold Coast for over a decade. As a master
-                electrician-led business, we pride ourselves on reliability,
-                safety compliance, and getting the job done without the
-                runaround.
-              </p>
-              <p>
-                Whether it&apos;s a residential emergency, a commercial fit-out,
-                or a full data and communications install — we bring the same
-                attention to detail to every job. We&apos;re the electricians our
-                clients keep calling back.
-              </p>
+            <p className="mt-6 text-base leading-relaxed text-text-muted">
+              Established in 2020, BDE is a family owned business servicing the
+              domestic and commercial markets across the greater Brisbane and
+              Gold Coast regions. With a decade of experience in residential,
+              construction and heavy industry, BDE is the trusted name in Data
+              &amp; Electrical services.
+            </p>
+
+            <div className="mt-8 flex flex-wrap gap-4">
+              <div className="flex items-center gap-3 rounded-lg bg-light-bg px-5 py-3">
+                <Award size={22} className="shrink-0 text-accent" />
+                <span className="text-sm font-semibold text-text-main">
+                  Master Electrician
+                </span>
+              </div>
+              <div className="flex items-center gap-3 rounded-lg bg-light-bg px-5 py-3">
+                <ShieldCheck size={22} className="shrink-0 text-accent" />
+                <span className="text-sm font-semibold text-text-main">
+                  Fully Insured
+                </span>
+              </div>
             </div>
 
-            <div className="mt-10 grid grid-cols-2 gap-4">
-              {stats.map(({ icon: Icon, label }) => (
-                <div
-                  key={label}
-                  className="flex items-start gap-3 rounded-lg bg-light-bg p-4"
-                >
-                  <Icon size={22} className="mt-0.5 shrink-0 text-accent" />
-                  <span className="text-sm font-medium text-text-main">
-                    {label}
-                  </span>
+            <div className="mt-10 rounded-xl border border-accent/20 bg-accent/5 p-6">
+              <p className="text-base italic leading-relaxed text-text-muted">
+                &ldquo;I engage BDE on a regular basis for a range of electrical
+                services and upgrades at our Carole Park premises. BDE is
+                reliable and quite simply – I just wouldn&apos;t use anyone
+                else.&rdquo;
+              </p>
+              <div className="mt-4 flex items-center gap-3">
+                <div className="h-10 w-10 rounded-full bg-accent/20 flex items-center justify-center">
+                  <span className="text-sm font-bold text-accent">SW</span>
                 </div>
-              ))}
+                <div>
+                  <p className="text-sm font-semibold text-text-main">
+                    Stephanie Wulff
+                  </p>
+                  <p className="text-xs text-text-muted">
+                    Head Office Manager, Satintouch
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
