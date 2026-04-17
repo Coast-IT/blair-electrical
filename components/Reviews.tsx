@@ -39,21 +39,14 @@ const reviews = [
     timeAgo: "9 months ago",
     text: "Ryan and his team installed our ducted aircon system. The whole installation and decommissioning of the stand-alone split systems was done extremely professionally and we are absolutely so happy with the final outcome. Ryan was very engaging and friendly and clearly provided us with the info we needed to make the right decisions. We without any doubt recommend Ryan and Blair Data and Electrical for your ducted aircon design, advice and install.",
   },
-  {
-    name: "Michael S",
-    initials: "MS",
-    rating: 5,
-    timeAgo: "2 months ago",
-    text: "They did a great job with installing a new aircon and adapting to what I needed and wanted. Would definitely recommend. Update: Had a small issue with a supplied aircon unit fitting. They responded straight away and came out and fixed it the same day. Great workmanship and attitude. Outstanding support which is another 5 stars. Thankyou very much",
-  },
 ];
 
 const avatarColors = [
-  "bg-brand-blue",
-  "bg-accent",
-  "bg-brand-blue",
-  "bg-accent",
-  "bg-brand-blue",
+  "bg-blue-500",
+  "bg-red-500",
+  "bg-cyan-500",
+  "bg-orange-500",
+  "bg-indigo-500",
 ];
 
 export default function Reviews() {
