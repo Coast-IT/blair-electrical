@@ -91,22 +91,6 @@ export default function About() {
               />
             </div>
 
-            <div className="mt-6 rounded-xl border-l-4 border-accent bg-light-bg p-5">
-              <p className="text-sm italic leading-relaxed text-text-muted">
-                &ldquo;I engage BDE on a regular basis for a range of electrical
-                services and upgrades at our Carole Park premises. BDE is
-                reliable and quite simply – I just wouldn&apos;t use anyone
-                else.&rdquo;
-              </p>
-              <div className="mt-3">
-                <p className="text-sm font-semibold text-text-main">
-                  Stephanie Wulff
-                </p>
-                <p className="text-xs text-text-muted">
-                  Head Office Manager, Satintouch
-                </p>
-              </div>
-            </div>
           </motion.div>
         </div>
       </div>
