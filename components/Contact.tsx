@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { Mail, MapPin, Phone, User, CheckCircle, Zap } from "lucide-react";
+import { Mail, MapPin, Phone, User, CheckCircle, Zap, Loader2 } from "lucide-react";
 
 interface FormData {
   fullName: string;
@@ -22,8 +22,19 @@ const serviceOptions = [
   "Testing & Certification",
 ];
 
+function encode(data: Record<string, string>) {
+  return Object.entries(data)
+    .map(
+      ([key, val]) =>
+        encodeURIComponent(key) + "=" + encodeURIComponent(val)
+    )
+    .join("&");
+}
+
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,10 +42,23 @@ export default function Contact() {
     reset,
   } = useForm<FormData>();
 
-  const onSubmit = (_data: FormData) => {
-    setSubmitted(true);
-    reset();
-    setTimeout(() => setSubmitted(false), 5000);
+  const onSubmit = async (data: FormData) => {
+    setSubmitting(true);
+    setError(false);
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", ...data }),
+      });
+      setSubmitted(true);
+      reset();
+      setTimeout(() => setSubmitted(false), 8000);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClasses =
@@ -170,16 +194,47 @@ export default function Contact() {
               </div>
             )}
 
+            {error && (
+              <div className="mb-6 flex items-center gap-3 rounded-lg bg-red-50 border border-red-200 p-4">
+                <p className="text-sm font-medium text-red-800">
+                  Something went wrong. Please call us on{" "}
+                  <a href="tel:0427015926" className="underline">
+                    0427 015 926
+                  </a>{" "}
+                  or email{" "}
+                  <a
+                    href="mailto:info@blairelectrical.com.au"
+                    className="underline"
+                  >
+                    info@blairelectrical.com.au
+                  </a>{" "}
+                  instead.
+                </p>
+              </div>
+            )}
+
             <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
               onSubmit={handleSubmit(onSubmit)}
               className="rounded-xl border border-gray-100 bg-light-bg p-6 sm:p-8 space-y-4"
               noValidate
             >
+              <input type="hidden" name="form-name" value="contact" />
+              <p className="hidden">
+                <label>
+                  Don&apos;t fill this out: <input name="bot-field" />
+                </label>
+              </p>
+
               <div>
                 <input
                   {...register("fullName", {
                     required: "Full name is required",
                   })}
+                  name="fullName"
                   placeholder="Full Name *"
                   className={inputClasses}
                 />
@@ -192,6 +247,7 @@ export default function Contact() {
                 <div>
                   <input
                     {...register("phone", { required: "Phone is required" })}
+                    name="phone"
                     type="tel"
                     placeholder="Phone *"
                     className={inputClasses}
@@ -209,6 +265,7 @@ export default function Contact() {
                         message: "Invalid email address",
                       },
                     })}
+                    name="email"
                     type="email"
                     placeholder="Email *"
                     className={inputClasses}
@@ -222,6 +279,7 @@ export default function Contact() {
               <div>
                 <select
                   {...register("securityType")}
+                  name="securityType"
                   className={inputClasses}
                   defaultValue=""
                 >
@@ -248,6 +306,7 @@ export default function Contact() {
                     >
                       <input
                         {...register("service")}
+                        name="service"
                         type="radio"
                         value={opt}
                         className="accent-brand-blue"
@@ -261,6 +320,7 @@ export default function Contact() {
               <div>
                 <textarea
                   {...register("message")}
+                  name="message"
                   rows={5}
                   placeholder="Message"
                   className={inputClasses}
@@ -269,9 +329,17 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full rounded-lg bg-accent px-8 py-4 text-base font-bold text-white shadow-sm shadow-accent/20 hover:bg-accent/90 transition-all hover:shadow-md"
+                disabled={submitting}
+                className="w-full rounded-lg bg-accent px-8 py-4 text-base font-bold text-white shadow-sm shadow-accent/20 hover:bg-accent/90 transition-all hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Send
+                {submitting ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Loader2 size={18} className="animate-spin" />
+                    Sending...
+                  </span>
+                ) : (
+                  "Send Enquiry"
+                )}
               </button>
             </form>
           </motion.div>
