@@ -9,6 +9,7 @@ import {
   Network,
   ClipboardCheck,
   ChevronDown,
+  Zap,
 } from "lucide-react";
 
 const services = [
@@ -17,7 +18,7 @@ const services = [
     title: "Electrical Services",
     subtitle: "New installations — power, lighting, appliances & smoke alarms",
     description:
-      "Have the one company assist with all your electrical needs. BDE offers all electrical services from exterior lighting to underground cabling and everything in between! End to end electrical solutions.",
+      "Have the one company assist with all your electrical needs. BDE offers all electrical services from exterior lighting to underground cabling and everything in between!",
     items: [
       "Downlights, interior and exterior lighting",
       "Electrical appliances — ovens, rangehoods, dryers, dishwashers, washing machines",
@@ -28,6 +29,7 @@ const services = [
       "Switchboard or sub board installation",
       "Underground cabling",
     ],
+    color: "brand-blue" as const,
   },
   {
     icon: Wrench,
@@ -47,6 +49,7 @@ const services = [
       "Smoke alarm testing & repair",
       "RCD testing",
     ],
+    color: "accent" as const,
   },
   {
     icon: Wind,
@@ -56,11 +59,12 @@ const services = [
       "Let BDE assist with all of your home or workplace air conditioning installation, upgrade and maintenance needs.",
     items: [
       "Ceiling fans & air conditioning units",
-      "New installations of Mitsubishi Heavy Split system/ducted AC units up to 18kW",
+      "New installations of Mitsubishi Heavy split system/ducted AC units up to 18kW",
       "Replacement, removal and disposal of old units",
       "AC servicing and maintenance",
       "Installation of new ceiling fans or upgrades",
     ],
+    color: "brand-blue" as const,
   },
   {
     icon: Network,
@@ -73,12 +77,12 @@ const services = [
       "Repair of existing data or phone cables/points",
       "Installation or repair of aerial TV points, cable or antenna",
     ],
+    color: "accent" as const,
   },
   {
     icon: ClipboardCheck,
     title: "Testing & Certification",
-    subtitle:
-      "Certified testing compliant with AS3000:2018 & AS3018:2001",
+    subtitle: "Compliant with AS3000:2018 & AS3018:2001",
     description:
       "Certified testing compliant with AS3000:2018 Wiring Rules and AS3018:2001 Electrical Installations.",
     items: [
@@ -87,6 +91,7 @@ const services = [
       "Retail — Shop fitouts, upgrades and maintenance",
       "Public — Available to local councils for new installations or upgrades",
     ],
+    color: "brand-blue" as const,
   },
 ];
 
@@ -99,30 +104,46 @@ function ServiceCard({
 }) {
   const [expanded, setExpanded] = useState(false);
   const Icon = service.icon;
+  const isBlue = service.color === "brand-blue";
 
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group rounded-xl bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      className={`group rounded-xl bg-white border-l-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+        isBlue ? "border-brand-blue" : "border-accent"
+      }`}
     >
       <div className="p-6">
-        <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-accent/10">
-          <Icon size={24} className="text-accent" />
+        <div
+          className={`flex h-11 w-11 items-center justify-center rounded-lg ${
+            isBlue ? "bg-brand-blue/10" : "bg-accent/10"
+          }`}
+        >
+          <Icon
+            size={22}
+            className={isBlue ? "text-brand-blue" : "text-accent"}
+          />
         </div>
-        <h3 className="mt-4 text-lg font-semibold text-text-main">
+        <h3 className="mt-4 text-lg font-bold text-text-main">
           {service.title}
         </h3>
-        <p className="mt-1 text-sm font-medium text-accent">{service.subtitle}</p>
+        <p
+          className={`mt-1 text-xs font-semibold uppercase tracking-wide ${
+            isBlue ? "text-brand-blue" : "text-accent"
+          }`}
+        >
+          {service.subtitle}
+        </p>
         <p className="mt-3 text-sm leading-relaxed text-text-muted">
           {service.description}
         </p>
 
         <button
           onClick={() => setExpanded(!expanded)}
-          className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-accent transition-colors"
+          className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-brand-blue transition-colors"
         >
           {expanded ? "Hide details" : "View details"}
           <ChevronDown
@@ -149,7 +170,11 @@ function ServiceCard({
                   key={item}
                   className="flex items-start gap-2 text-sm text-text-muted"
                 >
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                  <span
+                    className={`mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full ${
+                      isBlue ? "bg-brand-blue" : "bg-accent"
+                    }`}
+                  />
                   {item}
                 </li>
               ))}
@@ -170,18 +195,24 @@ export default function Services() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="max-w-2xl"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+          <div className="inline-flex items-center gap-2 text-brand-blue">
+            <Zap size={20} />
+            <span className="text-sm font-bold uppercase tracking-wider">
+              What We Do
+            </span>
+          </div>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-primary sm:text-4xl">
             Electrical &amp; Lighting Solutions
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-text-muted">
+          <p className="mt-4 text-text-muted">
             End-to-end electrical services for homes, businesses, and everything
             in between.
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, i) => (
             <ServiceCard key={service.title} service={service} index={i} />
           ))}

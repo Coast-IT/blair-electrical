@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { Mail, MapPin, Phone, User, CheckCircle } from "lucide-react";
+import { Mail, MapPin, Phone, User, CheckCircle, Zap } from "lucide-react";
 
 interface FormData {
   fullName: string;
@@ -22,13 +22,6 @@ const serviceOptions = [
   "Testing & Certification",
 ];
 
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-100px" },
-  transition: { duration: 0.6 },
-};
-
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const {
@@ -45,44 +38,58 @@ export default function Contact() {
   };
 
   const inputClasses =
-    "w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-text-main placeholder:text-text-muted/60 focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent transition-colors";
-  const errorClasses = "mt-1 text-xs text-red-500";
+    "w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-text-main placeholder:text-text-muted/60 focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue transition-colors";
+  const errorClasses = "mt-1 text-xs text-accent";
 
   return (
-    <section id="contact" className="bg-light-bg py-20 lg:py-28">
+    <section id="contact" className="bg-white py-20 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center"
+          className="max-w-2xl"
         >
-          <h2 className="text-3xl font-bold tracking-tight text-primary sm:text-4xl">
+          <div className="inline-flex items-center gap-2 text-brand-blue">
+            <Zap size={20} />
+            <span className="text-sm font-bold uppercase tracking-wider">
+              Get in Touch
+            </span>
+          </div>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-primary sm:text-4xl">
             Contact Us
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-text-muted">
+          <p className="mt-4 text-text-muted">
             Simply call or fill in the form and we&apos;ll get back to you as
             soon as we can.
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-2">
-          <motion.div {...fadeInUp}>
-            <div className="space-y-6">
+        <div className="mt-12 grid gap-12 lg:grid-cols-5">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-2"
+          >
+            <div className="space-y-5">
               <div className="flex items-start gap-4">
-                <User size={22} className="mt-1 shrink-0 text-accent" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10">
+                  <User size={18} className="text-brand-blue" />
+                </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-main">
-                    Contact
-                  </p>
+                  <p className="text-sm font-bold text-text-main">Contact</p>
                   <p className="text-sm text-text-muted">Ryan Blair</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <Phone size={22} className="mt-1 shrink-0 text-accent" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10">
+                  <Phone size={18} className="text-accent" />
+                </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-main">Phone</p>
+                  <p className="text-sm font-bold text-text-main">Phone</p>
                   <a
                     href="tel:0427015926"
                     className="text-sm text-text-muted hover:text-accent transition-colors"
@@ -92,64 +99,67 @@ export default function Contact() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <Mail size={22} className="mt-1 shrink-0 text-accent" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10">
+                  <Mail size={18} className="text-brand-blue" />
+                </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-main">
-                    Enquiries
-                  </p>
+                  <p className="text-sm font-bold text-text-main">Enquiries</p>
                   <a
                     href="mailto:info@blairelectrical.com.au"
-                    className="text-sm text-text-muted hover:text-accent transition-colors"
+                    className="text-sm text-text-muted hover:text-brand-blue transition-colors"
                   >
                     info@blairelectrical.com.au
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <Mail size={22} className="mt-1 shrink-0 text-accent" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10">
+                  <Mail size={18} className="text-brand-blue" />
+                </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-main">
-                    Accounts
-                  </p>
+                  <p className="text-sm font-bold text-text-main">Accounts</p>
                   <a
                     href="mailto:accounts@blairelectrical.com.au"
-                    className="text-sm text-text-muted hover:text-accent transition-colors"
+                    className="text-sm text-text-muted hover:text-brand-blue transition-colors"
                   >
                     accounts@blairelectrical.com.au
                   </a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <MapPin size={22} className="mt-1 shrink-0 text-accent" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10">
+                  <MapPin size={18} className="text-accent" />
+                </div>
                 <div>
-                  <p className="text-sm font-semibold text-text-main">
+                  <p className="text-sm font-bold text-text-main">
                     Service Area
                   </p>
                   <p className="text-sm text-text-muted">
-                    Servicing the Greater Brisbane &amp; Gold Coast Region
+                    Greater Brisbane &amp; Gold Coast
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-10 overflow-hidden rounded-xl bg-primary/5 border border-primary/10">
-              <div className="flex h-64 items-center justify-center">
-                <div className="text-center">
-                  <MapPin size={32} className="mx-auto text-accent" />
-                  <p className="mt-3 text-sm font-semibold text-primary">
-                    Brisbane &amp; Gold Coast Service Area
-                  </p>
-                  <p className="mt-1 text-xs text-text-muted">
-                    Covering all suburbs across SEQ
-                  </p>
-                </div>
+            <div className="mt-8 rounded-xl bg-primary p-6">
+              <div className="text-center">
+                <MapPin size={28} className="mx-auto text-brand-blue" />
+                <p className="mt-3 text-sm font-bold text-white">
+                  Brisbane &amp; Gold Coast
+                </p>
+                <p className="mt-1 text-xs text-white/50">
+                  Covering all suburbs across SEQ
+                </p>
               </div>
             </div>
           </motion.div>
 
           <motion.div
-            {...fadeInUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="lg:col-span-3"
           >
             {submitted && (
               <div className="mb-6 flex items-center gap-3 rounded-lg bg-green-50 border border-green-200 p-4">
@@ -162,7 +172,7 @@ export default function Contact() {
 
             <form
               onSubmit={handleSubmit(onSubmit)}
-              className="space-y-4"
+              className="rounded-xl border border-gray-100 bg-light-bg p-6 sm:p-8 space-y-4"
               noValidate
             >
               <div>
@@ -181,9 +191,7 @@ export default function Contact() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <input
-                    {...register("phone", {
-                      required: "Phone is required",
-                    })}
+                    {...register("phone", { required: "Phone is required" })}
                     type="tel"
                     placeholder="Phone *"
                     className={inputClasses}
@@ -229,20 +237,20 @@ export default function Contact() {
               </div>
 
               <fieldset>
-                <legend className="mb-2 text-sm font-medium text-text-muted">
+                <legend className="mb-3 text-sm font-bold text-text-main">
                   Service Required
                 </legend>
                 <div className="grid grid-cols-2 gap-3">
                   {serviceOptions.map((opt) => (
                     <label
                       key={opt}
-                      className="flex items-center gap-2 rounded-lg border border-gray-300 px-3 py-2.5 text-sm text-text-main cursor-pointer hover:border-accent/50 transition-colors has-[:checked]:border-accent has-[:checked]:bg-accent/5"
+                      className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2.5 text-sm text-text-main cursor-pointer hover:border-brand-blue/50 transition-colors has-[:checked]:border-brand-blue has-[:checked]:bg-brand-blue/5"
                     >
                       <input
                         {...register("service")}
                         type="radio"
                         value={opt}
-                        className="accent-accent"
+                        className="accent-brand-blue"
                       />
                       {opt}
                     </label>
@@ -261,7 +269,7 @@ export default function Contact() {
 
               <button
                 type="submit"
-                className="w-full rounded-lg bg-accent px-8 py-4 text-base font-semibold text-primary shadow-sm hover:bg-accent/90 transition-all hover:shadow-md"
+                className="w-full rounded-lg bg-accent px-8 py-4 text-base font-bold text-white shadow-sm shadow-accent/20 hover:bg-accent/90 transition-all hover:shadow-md"
               >
                 Send
               </button>

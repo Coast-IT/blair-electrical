@@ -13,7 +13,19 @@ body {
 
 @layer base {
   :focus-visible {
-    outline: 2px solid #f5a623;
+    outline: 2px solid #00aadc;
     outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  .angle-cut-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 60px), 0 100%);
+  }
+  .angle-cut-top {
+    clip-path: polygon(0 60px, 100% 0, 100% 100%, 0 100%);
+  }
+  .text-balance {
+    text-wrap: balance;
   }
 }

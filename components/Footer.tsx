@@ -1,4 +1,5 @@
-import { Zap } from "lucide-react";
+import Image from "next/image";
+import { Phone, Mail } from "lucide-react";
 
 const quickLinks = [
   { label: "Home", href: "#home" },
@@ -8,14 +9,8 @@ const quickLinks = [
 ];
 
 const socialLinks = [
-  {
-    label: "Facebook",
-    href: "https://www.facebook.com/Blairelectrical",
-  },
-  {
-    label: "Instagram",
-    href: "https://www.instagram.com/blairelectrical/",
-  },
+  { label: "Facebook", href: "https://www.facebook.com/Blairelectrical" },
+  { label: "Instagram", href: "https://www.instagram.com/blairelectrical/" },
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/company/blair-data-electrical/",
@@ -24,17 +19,20 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-primary py-14">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <footer className="bg-primary">
+      <div className="h-1 bg-gradient-to-r from-accent via-brand-blue to-accent" />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <div className="flex items-center gap-2">
-              <Zap size={22} className="text-accent" />
-              <span className="text-lg font-bold text-white">
-                Blair Data &amp; Electrical
-              </span>
-            </div>
-            <p className="mt-3 text-sm text-white/60">
+            <Image
+              src="/logo.png"
+              alt="Blair Data & Electrical"
+              width={140}
+              height={44}
+              className="h-10 w-auto brightness-0 invert"
+            />
+            <p className="mt-4 text-sm text-white/50">
               When electrical safety is paramount.
             </p>
             <div className="mt-5 flex gap-4">
@@ -44,7 +42,7 @@ export default function Footer() {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-white/50 hover:text-accent transition-colors"
+                  className="text-xs font-medium text-white/40 hover:text-brand-blue transition-colors"
                   aria-label={link.label}
                 >
                   {link.label}
@@ -54,7 +52,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white/40">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white/30">
               Quick Links
             </h4>
             <ul className="mt-4 space-y-2">
@@ -62,7 +60,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-sm text-white/60 hover:text-accent transition-colors"
+                    className="text-sm text-white/50 hover:text-brand-blue transition-colors"
                   >
                     {link.label}
                   </a>
@@ -72,20 +70,22 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-white/40">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white/30">
               Contact
             </h4>
-            <div className="mt-4 space-y-2">
+            <div className="mt-4 space-y-3">
               <a
                 href="tel:0427015926"
-                className="block text-sm text-white/60 hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-sm text-white/50 hover:text-accent transition-colors"
               >
+                <Phone size={14} />
                 0427 015 926
               </a>
               <a
                 href="mailto:info@blairelectrical.com.au"
-                className="block text-sm text-white/60 hover:text-accent transition-colors"
+                className="flex items-center gap-2 text-sm text-white/50 hover:text-accent transition-colors"
               >
+                <Mail size={14} />
                 info@blairelectrical.com.au
               </a>
             </div>
@@ -93,11 +93,11 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 border-t border-white/10 pt-8">
-          <div className="flex flex-col items-center gap-3 text-center">
-            <p className="text-xs font-medium uppercase tracking-wider text-white/40">
+          <div className="flex flex-col items-center gap-2 text-center">
+            <p className="text-xs font-bold uppercase tracking-widest text-white/30">
               Servicing the Greater Brisbane &amp; Gold Coast Region
             </p>
-            <p className="text-xs text-white/40">
+            <p className="text-xs text-white/25">
               &copy; {new Date().getFullYear()} BDE. All rights reserved.
             </p>
           </div>
