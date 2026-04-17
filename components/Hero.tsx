@@ -12,7 +12,8 @@ export default function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/van.jpg')",
+          backgroundImage:
+            "url('/van.jpg'), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=1920&q=80')",
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />

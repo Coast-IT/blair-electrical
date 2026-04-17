@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { Menu, X, Phone } from "lucide-react";
+import { Menu, X, Phone, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -42,7 +42,15 @@ export default function Navbar() {
               height={50}
               className="h-12 w-auto"
               priority
+              onError={(e) => {
+                e.currentTarget.style.display = "none";
+                (e.currentTarget.nextSibling as HTMLElement)?.removeAttribute("hidden");
+              }}
             />
+            <span hidden className="flex items-center gap-2 text-lg font-extrabold text-white">
+              <Zap size={20} className="text-accent" />
+              Blair Data &amp; Electrical
+            </span>
           </a>
 
           <div className="hidden lg:flex items-center gap-8">
