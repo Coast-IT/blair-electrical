@@ -83,8 +83,8 @@ export default function About() {
           >
             <div className="overflow-hidden rounded-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80"
-                alt="Electrician at work"
+                src="/van2.png"
+                alt="Blair Data & Electrical service van"
                 width={600}
                 height={700}
                 className="h-[350px] w-full object-cover lg:h-[450px]"
