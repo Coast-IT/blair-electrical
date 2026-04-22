@@ -2,9 +2,45 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, ExternalLink, Zap, ChevronLeft, ChevronRight } from "lucide-react";
+import {
+  Star,
+  ExternalLink,
+  Zap,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
-const reviews = [
+interface Review {
+  name: string;
+  initials: string;
+  color: string;
+  rating: number;
+  timeAgo: string;
+  text: string;
+  photo?: string | null;
+}
+
+const AVATAR_COLORS = [
+  "bg-blue-500",
+  "bg-red-500",
+  "bg-cyan-500",
+  "bg-orange-500",
+  "bg-indigo-500",
+  "bg-emerald-500",
+  "bg-violet-500",
+  "bg-pink-500",
+];
+
+function getInitials(name: string) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+}
+
+const staticReviews: Review[] = [
   {
     name: "Nigel Smith",
     initials: "NS",
@@ -78,16 +114,25 @@ function GoogleIcon() {
   );
 }
 
-function ReviewCard({ review }: { review: (typeof reviews)[0] }) {
+function ReviewCard({ review }: { review: Review }) {
   return (
     <div className="rounded-xl bg-white p-6 shadow-sm h-full">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <div
-            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${review.color}`}
-          >
-            {review.initials}
-          </div>
+          {review.photo ? (
+            <img
+              src={review.photo}
+              alt={review.name}
+              className="h-10 w-10 rounded-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+          ) : (
+            <div
+              className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${review.color}`}
+            >
+              {review.initials}
+            </div>
+          )}
           <div>
             <p className="text-sm font-bold text-text-main">{review.name}</p>
             <p className="text-xs text-text-muted">{review.timeAgo}</p>
@@ -108,19 +153,47 @@ function ReviewCard({ review }: { review: (typeof reviews)[0] }) {
 }
 
 export default function Reviews() {
+  const [reviews, setReviews] = useState<Review[]>(staticReviews);
+  const [totalReviews, setTotalReviews] = useState<number | null>(null);
+  const [avgRating, setAvgRating] = useState<number>(5.0);
   const [current, setCurrent] = useState(0);
   const [paused, setPaused] = useState(false);
   const [direction, setDirection] = useState(1);
 
+  useEffect(() => {
+    fetch("/.netlify/functions/reviews")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.reviews && data.reviews.length > 0) {
+          const live: Review[] = data.reviews.map(
+            (r: { name: string; rating: number; text: string; timeAgo: string; photo?: string | null }, i: number) => ({
+              name: r.name,
+              initials: getInitials(r.name),
+              color: AVATAR_COLORS[i % AVATAR_COLORS.length],
+              rating: r.rating,
+              timeAgo: r.timeAgo,
+              text: r.text,
+              photo: r.photo,
+            })
+          );
+          setReviews(live);
+          setCurrent(0);
+        }
+        if (data.totalReviews) setTotalReviews(data.totalReviews);
+        if (data.rating) setAvgRating(data.rating);
+      })
+      .catch(() => {});
+  }, []);
+
   const next = useCallback(() => {
     setDirection(1);
     setCurrent((prev) => (prev + 1) % reviews.length);
-  }, []);
+  }, [reviews.length]);
 
   const prev = useCallback(() => {
     setDirection(-1);
     setCurrent((prev) => (prev - 1 + reviews.length) % reviews.length);
-  }, []);
+  }, [reviews.length]);
 
   useEffect(() => {
     if (paused) return;
@@ -158,9 +231,14 @@ export default function Reviews() {
               {Array.from({ length: 5 }).map((_, i) => (
                 <Star key={i} size={18} className="fill-accent text-accent" />
               ))}
-              <span className="text-sm font-bold text-text-main">5.0</span>
+              <span className="text-sm font-bold text-text-main">
+                {avgRating.toFixed(1)}
+              </span>
               <span className="text-sm text-text-muted">
-                · {reviews.length} reviews on Google
+                ·{" "}
+                {totalReviews
+                  ? `${totalReviews}+ reviews on Google`
+                  : `${reviews.length} reviews on Google`}
               </span>
             </div>
           </div>
@@ -201,7 +279,7 @@ export default function Reviews() {
             })}
           </div>
 
-          {/* Mobile/Tablet: show 1 card with slide animation */}
+          {/* Mobile/Tablet: show 1 card */}
           <div className="lg:hidden overflow-hidden">
             <AnimatePresence mode="wait" custom={direction}>
               <motion.div
@@ -218,7 +296,7 @@ export default function Reviews() {
             </AnimatePresence>
           </div>
 
-          {/* Navigation arrows */}
+          {/* Navigation */}
           <div className="mt-6 flex items-center justify-center gap-4">
             <button
               onClick={prev}
@@ -227,8 +305,6 @@ export default function Reviews() {
             >
               <ChevronLeft size={20} />
             </button>
-
-            {/* Dots */}
             <div className="flex gap-2">
               {reviews.map((_, i) => (
                 <button
@@ -246,7 +322,6 @@ export default function Reviews() {
                 />
               ))}
             </div>
-
             <button
               onClick={next}
               className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-text-muted hover:border-brand-blue hover:text-brand-blue transition-colors"
