@@ -101,7 +101,11 @@ function ServiceCard({ service }: { service: (typeof services)[0] }) {
   const isBlue = service.color === "brand-blue";
 
   return (
-    <article
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5 }}
       className={`group rounded-xl bg-white border-l-4 shadow-sm transition-shadow duration-200 hover:shadow-md ${
         isBlue ? "border-brand-blue" : "border-accent"
       }`}
@@ -172,7 +176,7 @@ function ServiceCard({ service }: { service: (typeof services)[0] }) {
           </motion.div>
         )}
       </AnimatePresence>
-    </article>
+    </motion.article>
   );
 }
 
