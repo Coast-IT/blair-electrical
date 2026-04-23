@@ -109,14 +109,14 @@ export default function Contact() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10">
-                  <Phone size={18} className="text-accent" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10">
+                  <Phone size={18} className="text-brand-blue" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-text-main">Phone</p>
                   <a
                     href="tel:0427015926"
-                    className="text-sm text-text-muted hover:text-accent transition-colors"
+                    className="text-sm text-text-muted hover:text-brand-blue transition-colors"
                   >
                     0427 015 926
                   </a>
@@ -151,8 +151,8 @@ export default function Contact() {
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent/10">
-                  <MapPin size={18} className="text-accent" />
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10">
+                  <MapPin size={18} className="text-brand-blue" />
                 </div>
                 <div>
                   <p className="text-sm font-bold text-text-main">
