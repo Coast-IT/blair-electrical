@@ -95,24 +95,14 @@ const services = [
   },
 ];
 
-function ServiceCard({
-  service,
-  index,
-}: {
-  service: (typeof services)[0];
-  index: number;
-}) {
+function ServiceCard({ service }: { service: (typeof services)[0] }) {
   const [expanded, setExpanded] = useState(false);
   const Icon = service.icon;
   const isBlue = service.color === "brand-blue";
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-      className={`group rounded-xl bg-white border-l-4 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md ${
+    <article
+      className={`group rounded-xl bg-white border-l-4 shadow-sm transition-shadow duration-200 hover:shadow-md ${
         isBlue ? "border-brand-blue" : "border-accent"
       }`}
     >
@@ -182,7 +172,7 @@ function ServiceCard({
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.article>
+    </article>
   );
 }
 
@@ -214,7 +204,7 @@ export default function Services() {
 
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, i) => (
-            <ServiceCard key={service.title} service={service} index={i} />
+            <ServiceCard key={service.title} service={service} />
           ))}
         </div>
       </div>
