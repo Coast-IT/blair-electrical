@@ -6,7 +6,41 @@
   NODE_VERSION = "20"
 
 [[redirects]]
-  from = "/*"
+  from = "/contact-us"
   to = "/"
   status = 301
-  force = true
+
+[[redirects]]
+  from = "/contact-us/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/services"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/services/"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/privacy-and-cookies-policy"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/privacy-and-cookies-policy/"
+  to = "/"
+  status = 301
