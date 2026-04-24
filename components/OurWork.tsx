@@ -7,28 +7,48 @@ import { Zap, ChevronLeft, ChevronRight } from "lucide-react";
 
 const photos = [
   {
-    src: "/BWBris25-Day4-110.jpg",
-    alt: "Team installing air conditioning unit",
-  },
-  {
-    src: "/BWBris25-Day4-106.jpg",
-    alt: "Split system air conditioning install",
-  },
-  {
     src: "/BWBris25-Day4-153.jpg",
     alt: "Electrician ready for the job",
+  },
+  {
+    src: "/BWBris25-Day4-16.jpg",
+    alt: "Ducted AC work in the roof space",
+  },
+  {
+    src: "/BWBris25-Day4-110.jpg",
+    alt: "Team installing air conditioning unit",
   },
   {
     src: "/BWBris25-Day4-174.jpg",
     alt: "Kitchen oven installation",
   },
   {
+    src: "/BWBris25-Day4-154.jpg",
+    alt: "AC pressure gauge testing",
+  },
+  {
+    src: "/BWBris25-Day4-102.jpg",
+    alt: "Levelling an indoor AC unit",
+  },
+  {
     src: "/BWBris25-Day4-183.jpg",
     alt: "Downlight installation",
   },
   {
+    src: "/BWBris25-Day4-157.jpg",
+    alt: "Servicing a Mitsubishi outdoor unit",
+  },
+  {
     src: "/BWBris25-Day4-184.jpg",
     alt: "Switchboard maintenance",
+  },
+  {
+    src: "/BWBris25-Day4-112.jpg",
+    alt: "Team working on outdoor AC unit",
+  },
+  {
+    src: "/BWBris25-Day4-106.jpg",
+    alt: "Split system air conditioning install",
   },
 ];
 
