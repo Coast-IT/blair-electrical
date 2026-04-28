@@ -8,6 +8,7 @@ import {
   Wind,
   Network,
   ClipboardCheck,
+  PlugZap,
   ChevronDown,
   Zap,
 } from "lucide-react";
@@ -92,6 +93,22 @@ const services = [
       "Public — Available to local councils for new installations or upgrades",
     ],
     color: "brand-blue" as const,
+  },
+  {
+    icon: PlugZap,
+    title: "EV Charger Installation",
+    subtitle: "Home & commercial charging stations",
+    description:
+      "Professional installation of home and commercial EV charging stations. Safe, compliant setups designed for fast, efficient, and reliable charging.",
+    items: [
+      "Home EV charger installation & setup",
+      "Commercial & workplace charging stations",
+      "Dedicated EV circuit & switchboard upgrades",
+      "All major charger brands — Tesla, Ocular, Wallbox & more",
+      "Compliance with AS/NZS 3000 wiring rules",
+      "Load management & smart charging solutions",
+    ],
+    color: "accent" as const,
   },
 ];
 
