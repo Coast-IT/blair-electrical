@@ -37,7 +37,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between">
           <a href="#home" className="flex items-center gap-3">
             <Image
-              src="/logo.png"
+              src="/logo-white.png"
               alt="Blair Data & Electrical"
               width={160}
               height={50}
