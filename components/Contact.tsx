@@ -62,7 +62,7 @@ export default function Contact() {
   };
 
   const inputClasses =
-    "w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-sm text-text-main placeholder:text-text-muted/60 focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue transition-colors";
+    "w-full rounded-lg border border-gray-200 bg-white px-4 py-3 text-base sm:text-sm text-text-main placeholder:text-text-muted/60 focus:border-brand-blue focus:outline-none focus:ring-1 focus:ring-brand-blue transition-colors";
   const errorClasses = "mt-1 text-xs text-accent";
 
   return (
