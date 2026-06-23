@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { Mail, MapPin, Phone, User, CheckCircle, Zap, Loader2 } from "lucide-react";
+import { Mail, MapPin, Phone, User, CheckCircle, ShieldCheck, Zap, Loader2 } from "lucide-react";
 
 interface FormData {
   fullName: string;
@@ -160,6 +160,19 @@ export default function Contact() {
                   </p>
                   <p className="text-sm text-text-muted">
                     Greater Brisbane &amp; Gold Coast
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brand-blue/10">
+                  <ShieldCheck size={18} className="text-brand-blue" />
+                </div>
+                <div>
+                  <p className="text-sm font-bold text-text-main">
+                    Licence
+                  </p>
+                  <p className="text-sm text-text-muted">
+                    Electrical Contractors #87624
                   </p>
                 </div>
               </div>
