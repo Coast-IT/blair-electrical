@@ -98,6 +98,9 @@ export default function Footer() {
               Servicing the Greater Brisbane &amp; Gold Coast Region
             </p>
             <p className="text-xs text-white/25">
+              Electrical Contractors Licence #87624
+            </p>
+            <p className="text-xs text-white/25">
               &copy; {new Date().getFullYear()} BDE. All rights reserved.
             </p>
           </div>

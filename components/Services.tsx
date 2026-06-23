@@ -7,7 +7,6 @@ import {
   Wrench,
   Wind,
   Network,
-  ClipboardCheck,
   PlugZap,
   ChevronDown,
   Zap,
@@ -81,20 +80,6 @@ const services = [
     color: "accent" as const,
   },
   {
-    icon: ClipboardCheck,
-    title: "Testing & Certification",
-    subtitle: "Compliant with AS3000:2018 & AS3018:2001",
-    description:
-      "Certified testing compliant with AS3000:2018 Wiring Rules and AS3018:2001 Electrical Installations.",
-    items: [
-      "Domestic — Owners, builders, new builds and renovation upgrades",
-      "Commercial — Industrial and commercial builds and upgrades",
-      "Retail — Shop fitouts, upgrades and maintenance",
-      "Public — Available to local councils for new installations or upgrades",
-    ],
-    color: "brand-blue" as const,
-  },
-  {
     icon: PlugZap,
     title: "EV Charger Installation",
     subtitle: "Home & commercial charging stations",
@@ -108,7 +93,7 @@ const services = [
       "Compliance with AS/NZS 3000 wiring rules",
       "Load management & smart charging solutions",
     ],
-    color: "accent" as const,
+    color: "brand-blue" as const,
   },
 ];
 
